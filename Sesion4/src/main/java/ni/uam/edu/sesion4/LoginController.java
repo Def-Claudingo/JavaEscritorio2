@@ -8,6 +8,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import lombok.Locked;
 
 public class LoginController {
 
@@ -29,6 +30,11 @@ public class LoginController {
 
     @FXML
     protected void btnConfirmar() {
+        ReadUser();
+        abrirGradeView();
+    }
+
+    private void ReadUser(){
         String usuario = txtUsuario.getText().trim();
         String clave = txtClave.getText();
 
@@ -38,12 +44,11 @@ public class LoginController {
         }
 
         if (usuario.equals("admin") && clave.equals("admin")) {
-            abrirGradeView();
+
         } else {
             lblMensaje.setText("Usuario o contraseña incorrectos.");
         }
     }
-
     private void abrirGradeView() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("grade-view-fxml.fxml"));

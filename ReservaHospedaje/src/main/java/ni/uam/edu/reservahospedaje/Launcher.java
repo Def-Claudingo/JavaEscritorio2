@@ -1,9 +1,10 @@
-package ni.uam.edu.sesion4;
+package ni.uam.edu.reservahospedaje;
 
 import javafx.application.Application;
 
 public class Launcher {
     public static void main(String[] args) {
-        Application.launch(gradeApplication.class, args);
+        Application.launch(HelloApplication.class, args);
     }
+
 }
