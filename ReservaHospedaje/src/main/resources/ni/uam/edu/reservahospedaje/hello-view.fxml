@@ -1,16 +1,86 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
-
 <?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="ni.uam.edu.reservahospedaje.HelloController">
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-    </padding>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-    <Label fx:id="welcomeText"/>
-    <Button text="Hello!" onAction="#onHelloButtonClick"/>
+<VBox prefHeight="492.0" prefWidth="570.0" spacing="20.0" style="-fx-background-color: #F5F1E8; -fx-border-color: #D6CEC1;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ni.uam.edu.reservahospedaje.HelloController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+   <Label text="Reserva de hospedaje" textFill="#252525">
+      <font>
+         <Font name="System Bold Italic" size="15.0" />
+      </font>
+      <VBox.margin>
+         <Insets left="185.0" />
+      </VBox.margin>
+      <padding>
+         <Insets right="50.0" />
+      </padding>
+   </Label>
+   <HBox prefHeight="150.0" prefWidth="200.0" spacing="30.0">
+      <children>
+         <VBox maxHeight="500.0" maxWidth="200.0" prefHeight="500.0" prefWidth="200.0" spacing="10.0">
+            <children>
+               <Label text="Tipo de habitaciones" textFill="#444444">
+                  <font>
+                     <Font name="System Bold Italic" size="13.0" />
+                  </font>
+               </Label>
+               <ComboBox fx:id="comboHabitacion" prefWidth="150.0" />
+               <Label text="Tipo de pago" textFill="#444444">
+                  <font>
+                     <Font name="System Bold Italic" size="13.0" />
+                  </font>
+               </Label>
+               <RadioButton fx:id="radioTarjeta" mnemonicParsing="false" text="Tarjeta" />
+               <RadioButton fx:id="radioEfectivo" mnemonicParsing="false" text="Efectivo" />
+               <Label text="Servicios extras" textFill="#444444">
+                  <font>
+                     <Font name="System Bold Italic" size="13.0" />
+                  </font>
+               </Label>
+               <CheckBox fx:id="chkTransporte" mnemonicParsing="false" text="Transporte" />
+               <CheckBox fx:id="chkLavanderia" mnemonicParsing="false" text="Lavandería" />
+               <CheckBox fx:id="chkTour" mnemonicParsing="false" text="Tour local" />
+            </children>
+            <padding>
+               <Insets bottom="10.0" right="10.0" top="10.0" />
+            </padding>
+         </VBox>
+         <ListView fx:id="lvResultado" maxWidth="265.0" prefHeight="200.0" prefWidth="265.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #D6CEC1; -fx-text-fill-color: #C9A227;" />
+      </children>
+      <padding>
+         <Insets left="30.0" />
+      </padding>
+   </HBox>
+   <Label fx:id="lblMensajeError" textFill="RED">
+      <padding>
+         <Insets left="30.0" />
+      </padding>
+      <font>
+         <Font name="System Bold Italic" size="14.0" />
+      </font>
+   </Label>
+   <HBox prefHeight="100.0" prefWidth="200.0" spacing="200.0">
+      <children>
+          <Button fx:id="btnReservar" contentDisplay="CENTER" defaultButton="true" onAction="#Reservar" prefHeight="45.0" prefWidth="120.0" style="-fx-background-radius: 20; -fx-background-color: #556B2F;" text="Reservar" textAlignment="CENTER" textFill="WHITE">
+            <font>
+               <Font name="System Bold" size="14.0" />
+            </font>
+         </Button>
+         <Button mnemonicParsing="false" onAction="#cleanView" prefHeight="45.0" prefWidth="120.0" style="-fx-background-color: #C76B4A; -fx-background-radius: 20;" text="Limpiar" textFill="WHITE" />
+      </children>
+      <VBox.margin>
+         <Insets left="13.0" />
+      </VBox.margin>
+   </HBox>
 </VBox>
