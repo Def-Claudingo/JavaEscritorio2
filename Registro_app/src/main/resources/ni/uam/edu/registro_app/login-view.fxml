@@ -5,17 +5,19 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" prefHeight="300.0" prefWidth="300.0" spacing="20.0" style="-fx-background-color: #1877F2;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ni.uam.edu.registro_app.controllers.LoginController">
+<VBox alignment="CENTER" prefHeight="300.0" prefWidth="300.0" spacing="20.0" style="-fx-background-color: #0099ab;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ni.uam.edu.registro_app.controllers.LoginController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
    <HBox prefHeight="70.0" prefWidth="200.0" spacing="20.0">
       <children>
-          <Label fx:id="welcomeText" text="FACEBOOK">
+         <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
+          <Label fx:id="welcomeText" text="UAM">
             <font>
                <Font name="Arial Bold" size="24.0" />
             </font>
