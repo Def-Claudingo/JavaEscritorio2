@@ -46,5 +46,5 @@
          <Font name="System Bold" size="12.0" />
       </font>
    </Label>
-    <Button maxHeight="50.0" maxWidth="90.0" onAction="#btnConfirmar" prefHeight="30.0" text="Confirmar" />
+    <Button fx:id="confirmarBoton" maxHeight="50.0" maxWidth="90.0" onAction="#btnConfirmar" prefHeight="30.0" text="Confirmar" />
 </VBox>
