@@ -53,7 +53,7 @@ public class EstudianteController {
             LocalDate fecha = fila.getValue().getFechaNacimiento();
             return new SimpleStringProperty(fecha == null ? "" : fecha.toString());
         });
-        colCiudad.setCellValueFactory(fila -> new SimpleStringProperty(fila.getValue().getHabitacion()));
+        colCiudad.setCellValueFactory(fila -> new SimpleStringProperty(fila.getValue().getCiudad()));
         colSexo.setCellValueFactory(fila -> {
             RadioButton sexo = fila.getValue().getSexo();
             return new SimpleStringProperty(sexo == null ? "" : sexo.getText());

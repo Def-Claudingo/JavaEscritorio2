@@ -17,6 +17,6 @@ public class Estudiante {
     private String carrera;
     private LocalDate fechaNacimiento;
     private Boolean tieneBeca;
-    private String habitacion;
+    private String ciudad;
     private RadioButton sexo;
 }
