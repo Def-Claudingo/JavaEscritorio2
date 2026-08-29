@@ -5,6 +5,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.text.Text;
 import ni.uam.edu.registro_app.DAO.EstudianteDAO;
 import ni.uam.edu.registro_app.modelos.Estudiante;
 
@@ -61,6 +62,12 @@ public class EstudianteController {
             Boolean beca = fila.getValue().getTieneBeca();
             return new SimpleStringProperty(Boolean.TRUE.equals(beca) ? "Si" : "No");
         });
+
+        aplicarWrapText(colNombre);
+        aplicarWrapText(colApellidos);
+        aplicarWrapText(colCarrera);
+
+        tblEstudiantes.setFixedCellSize(-1);
         tblEstudiantes.setItems(datosTabla);
     }
 
@@ -69,29 +76,32 @@ public class EstudianteController {
         contrarRegistro();
     }
     private void leerDatos(){
+        try {
+            if (!validarTexto(txtNombre))
+                throw new IllegalArgumentException("Ingrese sus nombres");
+            if (!validarTexto(txtApellidos))
+                throw new IllegalArgumentException("Ingrese sus apellidos");
+            if (!validarTexto(txtCarrera))
+                throw new IllegalArgumentException("Ingrese su carrera");
+            if (dpfechaNac.getValue() == null)
+                throw new IllegalArgumentException("Seleccione una fecha de nacimiento");
+            if (cmbCiudad.getValue() == null)
+                throw new IllegalArgumentException("Seleccione una ciudad");
+            if (rdSexo.getSelectedToggle() == null)
+                throw new IllegalArgumentException("Seleccione el sexo");
 
-        if (!validarTexto(txtNombre)) {
-            lblMensajeError.setText("Ingrese sus nombres");
-            return;
-        }
-        if (!validarTexto(txtApellidos)) {
-            lblMensajeError.setText("Ingrese sus apellidos");
-            return;
-        }
-        if (!validarTexto(txtCarrera)) {
-            lblMensajeError.setText("Ingrese sus carreras");
-            return;
-        }
+            String nombre = txtNombre.getText();
+            String apellidos = txtApellidos.getText();
+            String carrera = txtCarrera.getText();
+            LocalDate fechaNac = dpfechaNac.getValue();
+            Boolean tieneBeca = chktieneBeca.isSelected();
+            String ciudad = cmbCiudad.getValue();
+            RadioButton sexo = (RadioButton) rdSexo.getSelectedToggle();
+            agregarDatos(new Estudiante(nombre, apellidos, carrera, fechaNac, tieneBeca, ciudad, sexo));
 
-        String nombre = txtNombre.getText();
-        String apellidos = txtApellidos.getText();
-        String carrera = txtCarrera.getText();
-        LocalDate fechaNac = dpfechaNac.getValue();
-        Boolean tieneBeca = chktieneBeca.isSelected();
-        String ciudad = cmbCiudad.getValue();
-        RadioButton sexo = (RadioButton) rdSexo.getSelectedToggle();
-        agregarDatos(new Estudiante(nombre, apellidos, carrera, fechaNac, tieneBeca, ciudad, sexo));
-
+        } catch (IllegalArgumentException e) {
+            lblMensajeError.setText(e.getMessage());
+        }
     }
     private void agregarDatos(Estudiante estudiante){
         listado.agregar(estudiante);
@@ -120,4 +130,23 @@ public class EstudianteController {
         return true;
     }
 
+    private void aplicarWrapText(TableColumn<Estudiante, String> columna) {
+        columna.setCellFactory(col -> new TableCell<>() {
+            private final Text texto = new Text();
+            {
+                texto.wrappingWidthProperty().bind(col.widthProperty().subtract(10));
+            }
+            @Override
+            protected void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null) {
+                    setText(null);
+                    setGraphic(null);
+                } else {
+                    texto.setText(item);
+                    setGraphic(texto);
+                }
+            }
+        });
+    }
 }
