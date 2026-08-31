@@ -30,8 +30,6 @@ public class LoginController {
         String usuario = txtUsuario.getText().trim();
         String clave = txtClave.getText();
 
-
-
         if (usuario.isEmpty() || clave.isEmpty()) {
             lblMensaje.setText("Complete todos los campos.");
             return;
@@ -45,7 +43,6 @@ public class LoginController {
             txtClave.clear();
         }
     }
-
     private void abrirRegistro() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/ni/uam/edu/registro_app/estudiante-view.fxml"));

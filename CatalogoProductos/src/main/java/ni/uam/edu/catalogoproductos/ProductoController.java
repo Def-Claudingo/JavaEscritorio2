@@ -146,7 +146,6 @@ public class ProductoController {
         }
         return true;
     }
-
     private boolean validarEntero(TextField campo) {
         try {
             int numero = Integer.parseInt(campo.getText().trim());

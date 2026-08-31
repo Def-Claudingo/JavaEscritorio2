@@ -47,24 +47,26 @@ public class HelloController {
             lblMensajeError.setText("Elija una habitación");
             return;
         }
-
         if (seleccionado == null) {
             lblMensajeError.setText("Elija un método de pago");
             return;
         }
-
+        if (serviciosElegidos.isEmpty()){
+            serviciosElegidos.add("Ninguno");
+        }
         String pago = seleccionado.getText();
 
         String reserva = "Habitación: " + habitacion +
                 "\nPago: " + pago +
                 "\nServicios:";
 
-        lvResultado.getItems().add(reserva);
         for (String servicio : serviciosElegidos) {
-            lvResultado.getItems().add(servicio);
-            cleanSpace();
-
+            reserva += "\n• " + servicio;
         }
+
+        lvResultado.getItems().add(reserva);
+
+        cleanSpace();
     }
 
     private void cleanSpace(){
