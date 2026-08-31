@@ -36,6 +36,11 @@
          </font>
       </Label>
       <TextField fx:id="txtGrades" />
+      <Label fx:id="lblMensajeError" textFill="RED">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Label>
       <Label fx:id="lblCountGrade" text="Registros guardados:" textFill="#d000ff">
          <font>
             <Font name="System Bold Italic" size="12.0" />
