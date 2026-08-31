@@ -13,7 +13,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class Producto {
     private String nombre;
-    private int precio;
+    private double precio;
     private LocalDate fechaIngreso;
     private Image imagen;
 }

@@ -1,6 +1,8 @@
 package ni.uam.edu.catalogoproductos;
 
 import javafx.animation.PauseTransition;
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -18,7 +20,6 @@ import ni.uam.edu.catalogoproductos.Modelos.Producto;
 import java.time.LocalDate;
 
 public class ProductoController {
-    private String rutaImagenSeleccionada = "";
     private Image imagenTemporal;
     ProductoDAO productos = new ProductoDAO();
     @FXML private TextField txtnombre;
@@ -30,7 +31,7 @@ public class ProductoController {
     @FXML private Label lblMensajeError2;
     @FXML private TableView <Producto> tblProducto;
     @FXML private TableColumn <Producto, String> colNombre;
-    @FXML private TableColumn <Producto, String>colPrecio;
+    @FXML private TableColumn <Producto, Double>colPrecio;
     @FXML private TableColumn <Producto, String>colFecha;
     @FXML private Button agregarProducto;
     @FXML private Button eliminarProducto;
@@ -58,7 +59,7 @@ public class ProductoController {
         colNombre.setCellValueFactory(
                 fila -> new SimpleStringProperty(fila.getValue().getNombre()));
         colPrecio.setCellValueFactory(
-                fila -> new SimpleStringProperty(String.valueOf(fila.getValue().getPrecio())));
+                fila -> new SimpleDoubleProperty(fila.getValue().getPrecio()).asObject());
         colFecha.setCellValueFactory(fila -> {
             LocalDate fecha = fila.getValue().getFechaIngreso();
             return new SimpleStringProperty(fecha == null ? "" : fecha.toString());
@@ -68,7 +69,6 @@ public class ProductoController {
 
     @FXML protected void btnAgregar() {
         agregarProductos();
-
     }
     private void agregarProductos(){
         leerproducto();
@@ -87,12 +87,12 @@ public class ProductoController {
             return;
         }
         if (!validarFechas(dtFecha)) {
-            lblMensajeError.setText("Elija una fecha de ingreso");
+            lblMensajeError.setText("Seleccione una fecha de ingreso");
             return;
         }
 
         String nombre = txtnombre.getText();
-        int precio = Integer.parseInt(txtprecio.getText());
+        double precio = Double.parseDouble(txtprecio.getText());
         LocalDate fecha = dtFecha.getValue();
         Image imagen = imagenTemporal;
         productos.agregar(new Producto(nombre,precio,fecha, imagen));
@@ -110,7 +110,6 @@ public class ProductoController {
         java.io.File archivoElegido = fileChooser.showOpenDialog(txtnombre.getScene().getWindow());
 
         if (archivoElegido != null) {
-            rutaImagenSeleccionada = archivoElegido.getAbsolutePath();
 
             Image imagen = new Image(archivoElegido.toURI().toString());
 
