@@ -73,7 +73,6 @@ public class ProductoController {
     private void agregarProductos(){
         leerproducto();
         listaPrductos.setAll(productos.obtenerLista());
-
     }
 
     private void leerproducto(){
