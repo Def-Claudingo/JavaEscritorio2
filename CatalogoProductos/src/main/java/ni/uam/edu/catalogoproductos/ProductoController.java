@@ -53,6 +53,22 @@ public class ProductoController {
                 }
             }
         });
+        tblProducto.setRowFactory(tv -> {
+            TableRow<Producto> fila = new TableRow<>();
+
+            fila.indexProperty().addListener((obs,anterior,nuevo) ->
+            {
+                if (nuevo.intValue() % 2 == 0 ){
+                    fila.setStyle("-fx-background-color: #0099ab; -fx-text-fill: white;" +
+                            " -fx-font-weight: bold;");
+                }
+                else{
+                    fila.setStyle("-fx-background-color: white; -fx-text-fill: #0099ab;" +
+                            " -fx-font-weight: bold;");
+                }
+            });
+            return fila;
+        });
     }
 
     private void prepararTabla(){

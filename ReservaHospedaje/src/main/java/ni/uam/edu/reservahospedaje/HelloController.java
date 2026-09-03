@@ -63,7 +63,7 @@ public class HelloController {
         for (String servicio : serviciosElegidos) {
             reserva += "\n• " + servicio;
         }
-
+        
         lvResultado.getItems().add(reserva);
 
         cleanSpace();
